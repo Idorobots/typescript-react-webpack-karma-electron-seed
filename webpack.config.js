@@ -6,6 +6,7 @@ const SplitByPathPlugin = require('webpack-split-by-path');
 const TypedocPlugin = require('typedoc-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 const plugins = [
     new TypedocPlugin({
@@ -30,6 +31,9 @@ const plugins = [
         name: 'vendor',
         path: [path.join(__dirname, 'node_modules/')]
     }]),
+    new ExtractTextPlugin("style.css", {
+        allChunks: true,
+    }),
     new webpack.optimize.UglifyJsPlugin({
         compress: {
             warnings: true,
@@ -63,7 +67,8 @@ const loaders = [
     },
     {
         test: /\.css$/,
-        loader: 'style-loader!css?-minimize!postcss',
+        loader: ExtractTextPlugin.extract('style-loader',
+                                          'css-loader?modules&importLoaders=1&localIdentName=[name]_[local]_[hash:base64:5]&sourceMap!postcss-loader'),
         exclude: /node_modules/,
     },
     {
@@ -76,15 +81,11 @@ const loaders = [
     })));
 
 const postcss = [
-    require('postcss-modules-local-by-default'),
-    require('postcss-import')({
-        addDependencyTo: webpack,
-    }),
-    require('postcss-cssnext'),
+    require('autoprefixer'),
     require('cssnano')({
         safe: true,
         sourcemap: true,
-        autoprefixer: false,
+        autoprefixer: true,
     }),
 ];
 
@@ -114,6 +115,7 @@ module.exports = {
         preLoaders: preLoaders,
         loaders: loaders,
     },
-
-    postcss: () => postcss
+    postcss: function() {
+        return postcss;
+    },
 };

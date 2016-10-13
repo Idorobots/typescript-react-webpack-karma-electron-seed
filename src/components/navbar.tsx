@@ -1,10 +1,12 @@
 import * as React from "react";
 import {Link} from "react-router";
 
+const styles = require("./navbar.css");
+
 export class NavBar extends React.Component<{}, {}> {
   public render() {
     return (
-      <div>
+      <div className={styles.navbar}>
         <h1>Navigation Bar</h1>
         <ul role="nav">
           <li><Link to="/">"/"(HOME)</Link></li>

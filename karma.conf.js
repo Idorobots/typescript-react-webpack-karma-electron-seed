@@ -1,6 +1,7 @@
 'use strict';
 
 const webpack = require('./webpack.config');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = (config) => {
     const coverage = config.singleRun ? ['coverage'] : [];
@@ -69,7 +70,7 @@ module.exports = (config) => {
                 colors: true,
                 reasons: true,
             },
-            plugins: [],
+            plugins: [new ExtractTextPlugin("style.css")],
             debug: true,
             ts: {
                 compilerOptions: {
