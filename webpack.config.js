@@ -43,6 +43,11 @@ const preLoaders = [
         loader: 'tslint',
         exclude: /node_modules/,
     },
+    {
+        test: /\.js$/,
+        loader: 'source-map-loader',
+        exclude: /node_modules/,
+    }
 ];
 
 const loaders = [
