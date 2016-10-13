@@ -29,7 +29,7 @@ module.exports = (config) => {
         files: [
             './node_modules/es6-shim//es6-shim.js',
             {
-                pattern: './src/**/*.spec.ts',
+                pattern: './src/**/*.spec.ts*',
                 served: true,
                 included: true,
                 watched: true,
@@ -43,7 +43,7 @@ module.exports = (config) => {
         ],
 
         preprocessors: {
-            './src/**/*.spec.ts': ['webpack', 'sourcemap'],
+            './src/**/*.spec.ts*': ['webpack', 'sourcemap'],
         },
 
         webpack: Object.assign({}, webpack, {
