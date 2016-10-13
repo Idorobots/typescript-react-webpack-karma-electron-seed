@@ -10,7 +10,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 const plugins = [
     new TypedocPlugin({
-        externalPattern: '**/*.spec.ts',
+        externalPattern: '**/*.spec.ts*',
         excludeExternals: true,
         jsx: 'react',
     }),
