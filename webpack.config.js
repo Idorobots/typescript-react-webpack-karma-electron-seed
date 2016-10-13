@@ -1,6 +1,6 @@
 'use strict';
 
-var path = require('path');
+const path = require('path');
 const webpack = require('webpack');
 const SplitByPathPlugin = require('webpack-split-by-path');
 const TypedocPlugin = require('typedoc-webpack-plugin');
@@ -51,7 +51,7 @@ const preLoaders = [
         test: /\.js$/,
         loader: 'source-map-loader',
         exclude: /node_modules/,
-    }
+    },
 ];
 
 const loaders = [
@@ -74,11 +74,12 @@ const loaders = [
     {
         test: /\.json$/,
         loader: 'json',
-    }].concat([/\.svg$/, /\.eot$/, /\.woff2?$/, /\.ttf$/].map((pattern) => ({
-        test: pattern,
-        loader: 'url',
-        exclude: /node_modules/,
-    })));
+    }
+].concat([/\.svg$/, /\.eot$/, /\.woff2?$/, /\.ttf$/].map((pattern) => ({
+    test: pattern,
+    loader: 'url',
+    exclude: /node_modules/,
+})));
 
 const postcss = [
     require('autoprefixer'),
@@ -90,15 +91,13 @@ const postcss = [
 ];
 
 module.exports = {
+    verbose: true,
     entry: './src/main.ts',
-
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].js',
     },
-
     devtool: 'source-map',
-
     resolve: {
         extensions: [
             '',
@@ -108,9 +107,7 @@ module.exports = {
             '.json'
         ],
     },
-
     plugins: plugins,
-
     module: {
         preLoaders: preLoaders,
         loaders: loaders,
