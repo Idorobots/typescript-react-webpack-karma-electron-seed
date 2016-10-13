@@ -22,7 +22,8 @@ module.exports = (config) => {
             'karma-spec-reporter',
             'karma-chrome-launcher',
             'karma-firefox-launcher',
-            'karma-phantomjs-launcher'
+            'karma-phantomjs-launcher',
+            'karma-electron',
         ],
 
         files: [
@@ -54,7 +55,7 @@ module.exports = (config) => {
                 postLoaders: config.singleRun
                     ? [
                         {
-                            test: /^(.(?!\.spec))*\.ts$/,
+                            test: /^(.(?!\.spec))*\.tsx$/,
                             loader: 'istanbul-instrumenter-loader',
                             query: {
                                 embedSource: true,
@@ -79,7 +80,8 @@ module.exports = (config) => {
             src: [
                 './dist/coverage/phantomjs/coverage-final.json',
                 './dist/coverage/chrome/coverage-final.json',
-                './dist/coverage/firefox/coverage-final.json'
+                './dist/coverage/electron/coverage-final.json',
+                './dist/coverage/firefox/coverage-final.json',
             ],
             reports: {
                 html: './dist/coverage',
@@ -104,6 +106,6 @@ module.exports = (config) => {
 
         autoWatch: true,
 
-        browsers: ['Chrome', 'Firefox', 'PhantomJS'],
+        browsers: ['Chrome', 'Electron', 'Firefox', 'PhantomJS'],
     });
 };

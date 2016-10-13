@@ -1,4 +1,7 @@
 /// <reference types="es6-shim" />
 /// <reference types="jasmine" />
 
-export * from "./hello";
+import { App } from "./containers/app";
+
+const app = new App();
+app.run();
