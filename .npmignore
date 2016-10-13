@@ -2,7 +2,7 @@
 /dist/coverage
 /dist/**/*.spec.d.ts
 /src
-/webpack
+app-*-x64/
 *.config.js
 *.conf.js
 *.json

@@ -4,7 +4,7 @@
   "description": "A seed project for full-featured TypeScript 2.0 + React + Webpack + Karma + Electron stack",
   "author": "Kajetan Rzepecki <kajtek@idorobots.org>",
   "license": "MIT",
-  "main": "dist/main.js",
+  "main": "dist/app.js",
   "types": "dist/src/main.d.ts",
   "scripts": {
     "lint": "npm run lint-css && npm run lint-ts",
@@ -15,7 +15,7 @@
     "test:watch": "karma start --singleRun false",
     "build": "webpack --bail",
     "start": "electron dist/app.js",
-    "package-app": "electron-packages . app",
+    "package-app": "electron-packager . app",
     "prebuild": "npm run test",
     "pretest": "npm run lint",
     "posttest": "istanbul check-coverage --statement 80 --branch 50 --function 70"
