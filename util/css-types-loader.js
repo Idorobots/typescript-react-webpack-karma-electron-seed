@@ -1,4 +1,3 @@
-var os = require('os');
 var DtsCreator = require('typed-css-modules');
 
 module.exports = function(source, map) {
@@ -9,10 +8,8 @@ module.exports = function(source, map) {
 
     creator.create(this.resourcePath, source).then(content => {
         content.writeFile().then(content => {
-
             // NOTE This hack makes it work on the first run.
-            var dts = content.contents.join(os.EOL);
-            this.emitFile(content.outputFilePath, dts);
+            this.emitFile(content.outputFilePath, "");
             callback(null, source, map);
         });
     });
