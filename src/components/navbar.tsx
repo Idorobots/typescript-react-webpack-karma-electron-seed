@@ -1,7 +1,7 @@
 import * as React from "react";
 import {Link} from "react-router";
 
-const styles = require("./navbar.css");
+import * as styles from "./navbar.css";
 
 export class NavBar extends React.Component<{}, {}> {
   public render() {
