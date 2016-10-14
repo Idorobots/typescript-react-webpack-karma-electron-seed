@@ -52,6 +52,11 @@ const preLoaders = [
         loader: 'source-map-loader',
         exclude: /node_modules/,
     },
+    {
+        test: /\.css$/,
+        loader: path.resolve(__dirname, 'util/css-types-loader'),
+        exclude: /node_modules/,
+    },
 ];
 
 const loaders = [
