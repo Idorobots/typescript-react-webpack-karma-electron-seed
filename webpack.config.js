@@ -6,7 +6,8 @@ const SplitByPathPlugin = require('webpack-split-by-path');
 const TypedocPlugin = require('typedoc-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
 
 const plugins = [
     new TypedocPlugin({
@@ -79,7 +80,7 @@ const loaders = [
     {
         test: /\.json$/,
         loader: 'json',
-    }
+    },
 ].concat([/\.svg$/, /\.eot$/, /\.woff2?$/, /\.ttf$/].map((pattern) => ({
     test: pattern,
     loader: 'url',
