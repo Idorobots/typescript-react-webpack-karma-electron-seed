@@ -18,7 +18,8 @@
     "package-app": "electron-packager . app",
     "prebuild": "npm run test",
     "pretest": "npm run lint",
-    "posttest": "istanbul check-coverage --statement 80 --branch 50 --function 70"
+    "posttest": "istanbul check-coverage --statement 80 --branch 50 --function 70",
+    "clean": "rimraf dist node_modules"
   },
   "dependencies": {
     "es6-shim": "^0.35.1",
@@ -65,6 +66,7 @@
     "postcss-loader": "^0.9.1",
     "raw-loader": "^0.5.1",
     "react-addons-test-utils": "^15.3.2",
+    "rimraf": "^2.5.4",
     "source-map-loader": "^0.1.5",
     "source-map-support": "^0.4.0",
     "style-loader": "^0.13.0",
