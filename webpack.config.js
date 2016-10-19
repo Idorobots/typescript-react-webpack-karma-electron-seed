@@ -112,7 +112,7 @@ module.exports = {
             '.ts',
             '.tsx',
             '.js',
-            '.json'
+            '.json',
         ],
     },
     plugins: plugins,
