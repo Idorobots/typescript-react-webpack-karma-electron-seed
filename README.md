@@ -25,7 +25,8 @@ This is a seed project that does the following:
 ```
 npm install
 npm run build
-npm pack ;; npm run package-app
+npm run build:watch
+npm run package-app
 ```
 
 ## Testing:

@@ -7,7 +7,9 @@ const TypedocPlugin = require('typedoc-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
+const PostCssImport = require('postcss-import');
+const PostCssNext = require('postcss-cssnext');
+const CssNano = require('cssnano');
 
 const plugins = [
     new TypedocPlugin({
@@ -53,12 +55,9 @@ const preLoaders = [
         loader: 'source-map-loader',
         exclude: /node_modules/,
     },
-    {
-        test: /\.css$/,
-        loader: path.resolve(__dirname, 'util/css-types-loader'),
-        exclude: /node_modules/,
-    },
 ];
+
+const customTypedCssLoader = path.resolve(__dirname, 'util/css-types-loader');
 
 const loaders = [
     {
@@ -74,7 +73,7 @@ const loaders = [
     {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract('style-loader',
-                                          'css-loader?modules&importLoaders=1&localIdentName=[name]_[local]_[hash:base64:5]&sourceMap!postcss-loader'),
+                                          'css-loader?modules&importLoaders=1&localIdentName=[name]_[local]_[hash:base64:5]&sourceMap!' + customTypedCssLoader + '!postcss-loader'),
         exclude: /node_modules/,
     },
     {
@@ -87,12 +86,15 @@ const loaders = [
     exclude: /node_modules/,
 })));
 
-const postcss = [
-    require('autoprefixer'),
-    require('cssnano')({
+const postcss = (webpack) => [
+    PostCssImport({
+        addDependencyTo: webpack,
+    }),
+    PostCssNext,
+    CssNano({
         safe: true,
         sourcemap: true,
-        autoprefixer: true,
+        autoprefixer: false,
     }),
 ];
 
@@ -110,7 +112,7 @@ module.exports = {
             '.ts',
             '.tsx',
             '.js',
-            '.json'
+            '.json',
         ],
     },
     plugins: plugins,
@@ -118,7 +120,5 @@ module.exports = {
         preLoaders: preLoaders,
         loaders: loaders,
     },
-    postcss: function() {
-        return postcss;
-    },
+    postcss: postcss,
 };

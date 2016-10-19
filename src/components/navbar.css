@@ -1,3 +1,10 @@
+@import '../styles/colors.css';
+
 .navbar h1 {
-  color: red;
+  color: var(--mainColor);
+  display: flex;
+
+  &:hover {
+    color: var(--hoverColor);
+  }
 }
